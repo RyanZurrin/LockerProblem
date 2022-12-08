@@ -8,6 +8,8 @@
 
 # Here’s the question: “Which lockers are left open after all 100 students have walked the row of lockers?”
 
+import time
+
 __author__ = "Ryan Zurrin"
 __version__ = "0.1.0"
 
@@ -16,6 +18,7 @@ def locker_problem():
     # get as input from user the number of lockers and students
     # create a list of lockers with the number of lockers
     # create a list of students with the number of students
+    t0 = time.time()
 
     total_lockers = int(input("Enter the number of lockers and students: "))
     total_students = total_lockers
@@ -30,6 +33,9 @@ def locker_problem():
             if locker % student == 0:
                 # Change the state of the locker
                 lockers_[locker] = not lockers_[locker]
+        if student % 1000 == 0:
+            # print how long it takes to process each 100 students
+            print(f"Student {student} took {time.time() - t0} seconds to process")
     # Loop through each locker
     for locker in range(1, total_lockers):
         # If the locker is open
@@ -37,6 +43,8 @@ def locker_problem():
             # Print the locker number
             print(locker, end=' ')
     print()
+    t1 = time.time()
+    print(f"Time to complete: {t1 - t0}")
     return lockers_
 
 
