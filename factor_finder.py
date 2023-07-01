@@ -27,23 +27,22 @@ class FactorFinder:
         return self.factors[number]
 
     def get_numbers_with_factors(self, number_of_factors):
-        numbers = []
-        for i in range(self.start_number, self.end_number + 1):
-            if len(self.factors[i]) == number_of_factors:
-                numbers.append(i)
-        return numbers
+        return [
+            i
+            for i in range(self.start_number, self.end_number + 1)
+            if len(self.factors[i]) == number_of_factors
+        ]
 
     def get_numbers_with_max_factors(self):
         """ find what numbers contain the most factors and return that number
         along with its factors """
         max_factors = 0
         max_factors_number = -1
-        results = {}
         for i in range(self.start_number, self.end_number + 1):
             if len(self.factors[i]) > max_factors:
                 max_factors = len(self.factors[i])
                 max_factors_number = i
-        results[max_factors_number] = self.factors[max_factors_number]
+        results = {max_factors_number: self.factors[max_factors_number]}
         for i in range(self.start_number, self.end_number + 1):
             if len(self.factors[i]) == max_factors and i != max_factors_number:
                 results[i] = self.factors[i]
@@ -54,12 +53,11 @@ class FactorFinder:
         along with its factors """
         min_factors = self.end_number
         min_factors_number = -1
-        results = {}
         for i in range(self.start_number, self.end_number + 1):
             if len(self.factors[i]) < min_factors:
                 min_factors = len(self.factors[i])
                 min_factors_number = i
-        results[min_factors_number] = self.factors[min_factors_number]
+        results = {min_factors_number: self.factors[min_factors_number]}
         for i in range(self.start_number, self.end_number + 1):
             if len(self.factors[i]) == min_factors and i != min_factors_number:
                 results[i] = self.factors[i]
